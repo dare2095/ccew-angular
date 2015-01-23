@@ -15,9 +15,43 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <style type="text/css">
+    body {
+      background-image: url("http://www.adamdorman.com/wallpaper/gradient_1600x1200.jpg");
+    }
+
+    .table{
+      background-color: white;
+    }
+
+    h1{
+      margin-left: 50px;
+      font-size: 44px;
+      color: white;
+    }
+
+    </style>
+
+
   </head>
   <body>
     <h1>People</h1>
+
+    <div id="main-div" class="container">
+
+      <div class="row">
+        <div class="col-md-4">
+          <ul class="list-group" id="list"></ul>
+        </div>
+
+
+        <div class= 'col-md-8'>
+          <table class= "table" id= "table"></table>
+        </div>
+
+      </div>
+
+    </div >
 
     <!-- ******* insert html here ******* -->
 
@@ -32,7 +66,27 @@
 
     <script type="text/javascript">
       
-      // use people array
+      var $list = $("#list");
+      var $table = $("#table");
+
+      $.each(people,function(i, el){
+        var $listItem = $('<a href="#" class="list-group-item">').text(el.firstName + " " + el.lastName);
+        $listItem.bind('click', function(){
+            
+            $listItem.addClass('active');
+            $table.empty();
+            for(var prop in el){
+            // $tr.append($('<td>').text(el.name));
+            var $tr = $('<tr>');
+            $tr.append(  $('<td>').text(prop));
+            $tr.append(  $('<td>').text(el[prop]));
+            $table.append( $tr);
+        }
+        });
+        $list.append($listItem);
+
+      });
+
 
     </script>
 
