@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app>
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,12 +17,36 @@
     <![endif]-->
 
   </head>
-  <body>
+  <body ng-init="accounts = [ { name: 'cPhilip Dow', admin: true}, { name: 'dMelinda Gates', admin: true}, { name: 'aMarcus Aurelius', admin: true}, { name: 'eMr. T', admin: false}, { name: 'bGandolf', admin: true}]; sort = 'name'" >
 
     <div class="container">
       <h1>Sort Accounts</h1>
 
       <!-- YOUR CODE HERE -->
+        <!-- YOUR CODE HERE -->
+      <table class="table table-striped">
+        <tr ng-repeat="obj in accounts | orderBy: sort">
+          <td>{{obj['name']}}</td>
+          <td>{{obj['admin']}}</td>
+          <td><input type="checkbox" disabled='disabled' ng-model="obj.admin"> </td>
+        </tr>
+  
+      </table>
+
+     <div class="radio">
+      <label>
+        <input  name="optionsRadios" type="radio" checked ng-model='sort' ng-value="'name'">
+          Name
+      </label>
+    </div>
+     <div class="radio">
+      <label>
+        <input  name="optionsRadios" type="radio" ng-model='sort' ng-value="'admin'">
+          Admin
+      </label>
+    </div>
+
+    <p>{{sort}}</p>
 
     </div>
 
