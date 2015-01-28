@@ -30,6 +30,10 @@
       color: white;
     }
 
+    .list-group-item{
+
+    }
+
     </style>
 
 
@@ -72,17 +76,27 @@
       $.each(people,function(i, el){
         var $listItem = $('<a href="#" class="list-group-item">').text(el.firstName + " " + el.lastName);
         $listItem.bind('click', function(){
-            
-            $listItem.addClass('active');
-            $table.empty();
-            for(var prop in el){
-            // $tr.append($('<td>').text(el.name));
-            var $tr = $('<tr>');
-            $tr.append(  $('<td>').text(prop));
-            $tr.append(  $('<td>').text(el[prop]));
-            $table.append( $tr);
-        }
+
+                $table.empty();
+                for(var prop in el){
+                var $tr = $('<tr>');
+                $tr.append(  $('<td>').text(prop));
+                if(prop == 'sex'){
+                   $tr.append(  $('<td>').text(el[prop] ? 'Female' : 'Male'));
+                }else{
+                  $tr.append(  $('<td>').text(el[prop]));
+                }
+                $table.append( $tr);
+              }
+
+              if($(this).hasClass("active")){
+                $(this).removeClass("actvie");
+              }else{
+                $(".active").removeClass("active");
+                $(this).addClass("active");
+              }
         });
+
         $list.append($listItem);
 
       });
